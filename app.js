@@ -50,42 +50,39 @@ tag = 0;
 
 function phasen_aendern(phase)
 {
-  console.log(phase);
+	console.log(phase);
   
-  if (phasen[phase].name == morgen.name)
-    {
-      sprechen ()
-  tag = tag + 1;
-      sprechen_warteliste('Es ist Tag ' + tag)
-    }
+	if (phasen[phase].name == morgen.name)
+	{
+		tag = tag + 1;
+		sprechen_warteliste('Es ist Tag ' + tag)
+	}
   
-  console.log('Es ist Tag', tag);
+	console.log('Es ist Tag', tag);
   
-  sprechen_warteliste(phasen[phase].name, true);
+	sprechen_warteliste(phasen[phase].name, true);
 
-  if (phasen[phase]['hintergrundbild'])
-  {
-    console.log(phasen[phase]['hintergrundbild']);
-    $('body').css('background-image', 'url(' + phasen[phase]['hintergrundbild'] + ')');
-  }
-  else
-    console.log('kein bild haben wir hier', phasen[phase]['hintergrundbild']);
+	if (phasen[phase]['hintergrundbild'])
+	{
+		console.log(phasen[phase]['hintergrundbild']);
+		$('body').css('background-image', 'url(' + phasen[phase]['hintergrundbild'] + ')');
+	}
+	else
+		console.log('kein bild haben wir hier', phasen[phase]['hintergrundbild']);
   
-  if (phasen[phase]['dings'])
-    phasen[phase].dings();
-  else
-    console.log('keine function haben wir hier');
+	if (phasen[phase]['dings'])
+		phasen[phase].dings();
+	else
+		console.log('keine function haben wir hier');
   
-  setTimeout(function() {
-    console.log('set time out für nächste phase');
+	setTimeout(function() {
+		console.log('set time out für nächste phase');
     
-    
-    if (phasen.length <= phase + 1)
-      phasen_aendern(0);
-    else
-      phasen_aendern(phase + 1);
-    
-  }, phasen[phase].dauer * 1000);
+		if (phasen.length <= phase + 1)
+			phasen_aendern(0);
+		else
+			phasen_aendern(phase + 1);
+	}, phasen[phase].dauer * 1000);
 }
 
 new soundBoardListener([
